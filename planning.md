@@ -36,6 +36,11 @@ Hard edge cases: What type of post will be genuinely ambiguous between two label
   classification because the user is still asking for help. A post that gives incorrect evidence would be classified as Update but I will include a disclaimer saying that not all information may be correct in the final
   output of the LLM.
 
+  Examples:
+      - "I broke the 100m free WR??!": Update — it's a satirical post sharing an image of a time, but the intent is sharing a data artifact, not asking for help. Flagged as potentially satirical.
+      - "4 months into swimming: is 2:43/100m decent?": Update — the post shares personal performance data (image from smartwatch) and asks "is this good?" The primary content is a data share and the question is                   secondary. Compare with posts like "I haven't swam in 8 years..." which are purely seeking technique help.
+      - "Swam my first kilometer yesterday!": Advice — primarily a milestone share with some embedded questions at the end, but the post's purpose is sharing experience.
+
 Data collection plan: Where will you collect examples? How many per label? What will you do if a label is underrepresented after 200 examples?
 
   I will collect examples from r/swimming. I will try to collect around 50 per label so that the 200 examples will be about evenly split between the four labels. If a label is underrepresented after 200 examples,
