@@ -13,7 +13,7 @@ Labels: What are your 2–4 labels? Define each in a complete sentence. Include 
          800/1500 free, raced for Portugal at the Tokyo Olympics, held my country's record in both and I coach adult swimmers now.
          - I forgot swimming is the best exercise. I was a star swimmer from 6-18. Left high school with 7 school records, competed at nationals junior and senior year etc.
          
-  Recieving_Advice - the post asks for help on how to improve technique. Can included narration to give context for the question or just be a single sentence with a question mark.
+  Receiving_Advice - the post asks for help on how to improve technique. Can included narration to give context for the question or just be a single sentence with a question mark.
     Examples:
          - Of course I know the general motion, you can tell that just from seeing others swim, but I feel like I'd get in the water for the first time just to find out I basically cant swim anymore.
            I don't know if muscle memory will save me orrr...Has anyone been in a similar situation?
