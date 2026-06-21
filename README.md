@@ -1,153 +1,180 @@
-Community:
-  The community that I choose was the swimming subbreddit (r/swimming). I choose this community because there were many posts on this page from a variety of different users, from ex-Olympians to recreational swimmers.
-  This community is a good fit for a classification task since there are posts giving advice, asking for advice, stating facts, and more.
+# r/swimming Post Classification
 
-Labels:
-  Advice - the post give a suggestion to the channel, it can be based off of personal experience or fact, evidence is not necessary. The advice can be general or targetted to a specific group.
-    Examples:
-         - You're not fading in the back half because you're unfit. You're going out too fast. Quick intro so you know why I'm writing this: I swam distance freestyle internationally. 
-         800/1500 free, raced for Portugal at the Tokyo Olympics, held my country's record in both and I coach adult swimmers now.
-         - I forgot swimming is the best exercise. I was a star swimmer from 6-18. Left high school with 7 school records, competed at nationals junior and senior year etc.
-         
-  Receiving_Advice - the post asks for help on how to improve technique or overall swimming ability. Can included narration to give context for the question or just be a single sentence with a question mark.
-    Examples:
-         - Of course I know the general motion, you can tell that just from seeing others swim, but I feel like I'd get in the water for the first time just to find out I basically cant swim anymore.
-           I don't know if muscle memory will save me orrr...Has anyone been in a similar situation?
-         - Does anyone have any ideas for helping a kid understand how to move his body faster?
-  
-  Recommendations - the post asks for help on anything other than actual technique. Can be problems while swimming or any general questions.
-    Examples:
-         - how to prevent water from going in nose without a plug? nothing has really worked
-         - Best stretches to improve shoulder mobility? My dolphin kicking is horrible due to poor flexibility. 
-  
-  Update - the post gives a headline about recent news, events, or personal happenings. evidence, in the form of a link, citation, or paraphrase, to inform the channel about the result of a recent competition or any other swimming related news.
-    Examples:
-         - Kate Douglass breaks Sarah Sjostrom's world record in 50 free https://swimswam.com/kate-douglass-breaks-sarah-sjostroms-world-record-with-23-59-50-free/
-         - I came across this article in Popular Mechanics the other day, Water Alters Your Consciousness, Research Suggests—And Can Induce a Trance-Like State https://archive.ph/i3Hu3
+## Community
 
-Data collection plan:
-  I will collect examples from r/swimming. I will try to collect around 50 per label so that the 200 examples will be about evenly split between the four labels. If a label is underrepresented after 200 examples,
-  I will go back and try to find more examples from that label to maintain balance.
+The community chosen was the swimming subreddit ([r/swimming](https://www.reddit.com/r/swimming/)). This community was selected because it contains posts from a wide variety of users, ranging from ex-Olympians to recreational swimmers.
 
-Label distribution:
-    Receiving_Advice    87
-    Update              49
-    Advice              36
-    Recommendations     28
-  
-Difficult-to-Label Examples:
-      - "I broke the 100m free WR??!": Update — it's a satirical post sharing an image of a time, but the intent is sharing a data artifact, not asking for help. Flagged as potentially satirical.
-      - "4 months into swimming: is 2:43/100m decent?": Update — the post shares personal performance data (image from smartwatch) and asks "is this good?" The primary content is a data share and the question is                   secondary. Compare with posts like "I haven't swam in 8 years..." which are purely seeking technique help.
-      - "Swam my first kilometer yesterday!": Advice — primarily a milestone share with some embedded questions at the end, but the post's purpose is sharing experience.
+This community is a good fit for a classification task since posts span multiple purposes: giving advice, asking for advice, stating facts, sharing news, and more.
 
-Fine-Tuning Approach:
-  Base Model - distilbert-base-uncased
-  Training Setup - 70% of the 200 examples where used as part of the training dataset. Precision, Recall, Accuracy, and F1 Score were reported.
-  Hyperparamter Decision - the number of epochs was increased from 3 to 5 and the learning rate was decreased from 2e-5 to 1e-5. This was done so that the model could learn the data more and in a more stable way.
+---
 
-Evaluation Report:
-  Overall Accuracy: For the Baseline model it was 0.667. For the Fine-Tuned model it was 0.433.
+## Labels
 
-  Per-class metrics (baseline):
-                  precision    recall  f1-score   support
+### Advice
+The post gives a suggestion to the channel. It can be based on personal experience or fact — evidence is not necessary. The advice can be general or targeted to a specific group.
 
-          Advice       0.50      0.33      0.40         6
-Receiving_Advice       0.62      1.00      0.76        13
- Recommendations       1.00      0.50      0.67         4
-          Update       1.00      0.43      0.60         7
+**Examples:**
+- *"You're not fading in the back half because you're unfit. You're going out too fast. Quick intro so you know why I'm writing this: I swam distance freestyle internationally. 800/1500 free, raced for Portugal at the Tokyo Olympics, held my country's record in both and I coach adult swimmers now."*
+- *"I forgot swimming is the best exercise. I was a star swimmer from 6–18. Left high school with 7 school records, competed at nationals junior and senior year etc."*
 
-        accuracy                           0.67        30
-       macro avg       0.78      0.57      0.61        30
-    weighted avg       0.73      0.67      0.64        30
+### Receiving_Advice
+The post asks for help on how to improve technique or overall swimming ability. Can include narration to give context for the question, or just be a single sentence with a question mark.
 
-  
-  Per-class metrics (fine-tuned model):
-                    precision    recall  f1-score   support
-  
-            Advice       0.00      0.00      0.00         6
-  Receiving_Advice       0.43      1.00      0.60        13
-   Recommendations       0.00      0.00      0.00         4
-            Update       0.00      0.00      0.00         7
-  
-          accuracy                           0.43        30
-         macro avg       0.11      0.25      0.15        30
-      weighted avg       0.19      0.43      0.26        30
+**Examples:**
+- *"Of course I know the general motion, you can tell that just from seeing others swim, but I feel like I'd get in the water for the first time just to find out I basically can't swim anymore. I don't know if muscle memory will save me orrr... Has anyone been in a similar situation?"*
+- *"Does anyone have any ideas for helping a kid understand how to move his body faster?"*
 
-  Confusion Matrix:
-                 Advice   Receiving_Advice   Recommendations   Update
-         Advice    0               6                0            0
-Receiving_Advice   0              13                0            0
-Recommendations    0               4                0            0
-          Update   0               7                0            0
+### Recommendations
+The post asks for help on anything other than actual technique — can be problems while swimming or any general questions.
 
-  Wrong Predictions:
-  Wrong predictions: 17 / 30
-      Example 1:
-      Text:      Quick intro so you know why I'm writing this: I'm JosÃ©. I swam distance freestyle for Portugal for about ten years, the 800 and 1500, with a stop at the Tokyo 2020 Olympics. Somewhere along the way, ...
-      True:      Advice
-      Predicted: Receiving_Advice  (confidence: 0.29)
-      Reasoning: The post starts with a narrative about the user so the model may have read this and decided that it was in the Receiving_Advice category. I tried to make the examples I gathered evenly distributed
-      among the four labels, but Receving_Advice did end up having the most posts. Due to this, the model most likely learned to predict this class the best, leading the model to treat this label as a "catch-all".
-      
-      Example 2:
-      Text:      Curious what's worked for people here because my shoulders are starting to feel permanently annoyed. Started swimming consistently again and forgot how quickly upper back/shoulder tightness sneaks up....
-      True:      Recommendations
-      Predicted: Receiving_Advice  (confidence: 0.29)
-      Reasoning: The destinction between the Recommendations and Receiving_Advice label is that the former is for adivce on non-technique related things while the latter is for technique related adivce. The model did not
-      learn this distinction, most likely due to limited examples, and mistook this post to be Receiving_Advice.
-      
-      Example 3:
-      Text:      I'm in month 3 of swimming and I'm addicted. I've tried two different methods while practicing front crawl. Method A: Continuing to breathe out all the way got me gasping for air in only 10-15 meters....
-      True:      Advice
-      Predicted: Receiving_Advice  (confidence: 0.32)
-      Reasoning: The model learned Receiving_Advice to be a "catch-all" bucket and always chooses to label posts with this label. To change this overall, I need to include more examples from other labels and make sure that
-      the model fully reads prompts before deciding which label to categorize them as.
+**Examples:**
+- *"How to prevent water from going in nose without a plug? Nothing has really worked."*
+- *"Best stretches to improve shoulder mobility? My dolphin kicking is horrible due to poor flexibility."*
 
-  Sample Classification:
-    Example 1:
-    Text:      I have been playing around with this, sometimes I look down at the bottom and sometimes I look ahead and sometimes I just wander with my eyes. What do folks in this community suggest? I have noticed t...
-    True:      Receiving_Advice
-    Predicted: Receiving_Advice  (confidence: 0.30)
-    Reasoning: The prediction is reasonable as the post asks for suggestions about head/eye movement while swimming which is related to technique.
-    
-    Example 2:
-    Text:      Hii! I'm a swimmer from a small club and we did a long distance gala. We did as many lengths of a 25m pool as we could for an hour. I got 102, so roughly 2.5k. Im 13. Is this any good? [image of certi...
-    True:      Receiving_Advice
-    Predicted: Receiving_Advice  (confidence: 0.31)
-    Reasoning: The prediction is reasonable as the post asks for suggestions about time standards which is related to overall swimming ability.
-    
-    Example 3:
-    Text:      So it's coming into winter here in Australia and my local pool is outdoors. I currently swim 2 x a week long swims (90mins 5km) and then 2 x a week shorter swims (just 1km 20 mins after my runs as a c...
-    True:      Update
-    Predicted: Receiving_Advice  (confidence: 0.31)
-    
-    Example 4:
-    Text:      I've been swimming regularly for about 8 months. My main issue is endurance. After 50 meters of freestyle, I usually need to stop for several seconds to catch my breath. My 100m freestyle time is arou...
-    True:      Advice
-    Predicted: Receiving_Advice  (confidence: 0.31)
-    
-    Example 5:
-    Text:      I saw this post last month about someone who started swimming at 33 and it changed their life for the better, especially their mental health. As a swim teacher, I found this really inspiring. I'm real...
-    True:      Update
-    Predicted: Receiving_Advice  (confidence: 0.30)
+### Update
+The post gives a headline about recent news, events, or personal happenings. Evidence in the form of a link, citation, or paraphrase is used to inform the channel about the result of a recent competition or any other swimming-related news.
 
-Reflection:
-  The model severely overfit to the Receiving_Advice label, classifying every post to be part of this. The model was intended to capture distinctions between each of the four labels and understand what each label means.
-  However, likley due to a slight imbalance in data, the model understood Receiving_Advice to be a catch-all bucket and choose this label every time. The label distribution was 87 Receiving_Advice, 49 Update, 36 Advice,
-  and 28 Recommendation.
+**Examples:**
+- *"Kate Douglass breaks Sarah Sjöström's world record in 50 free"* — [swimswam.com](https://swimswam.com/kate-douglass-breaks-sarah-sjostroms-world-record-with-23-59-50-free/)
+- *"I came across this article in Popular Mechanics the other day, Water Alters Your Consciousness, Research Suggests — And Can Induce a Trance-Like State"* — [archive.ph](https://archive.ph/i3Hu3)
 
-Spec Reflection:
-  The spec helped me tracked each step of the process and understand what each section and cell of the notebook would be used for. Additionally, the planning section at the beginning of the spec allowed me to brainstorm
-  ideas and understand the project/model so that I could choose a community that fit within the project's scope. One way that my implementation diverged from the spec was that I changed the number of epochs and the
-  learning rate of the model and re-ran section 3. I did this because when I ran section 3 with 3 epochs and a learning rate of 2e-5, the accuracy was very low. I decided that adding more epochs and lowering the learning
-  rate could improve accuracy and it did make a difference in the output.
+---
 
-AI Usage:
-  I used AI, Claude, to assist me in labelling half of the examples. I gave it my labels and my edge-cases and asked it to follow those guidelines
+## Data Collection Plan
 
-  I asked Claude to help me understand why my model was consistently labelling every posts as Receiving_Advice as well as other pattern in my wrongful predictions. I gave it my wrongfully predicted output for context.
-  The response that I got stated that this was most likely not a labelling problem, but rather the result of a small and imbalanced dataset.
+Examples were collected from r/swimming, targeting approximately 50 examples per label for a balanced dataset of ~200 total. If any label was underrepresented after 200 examples, additional examples from that label were added to maintain balance.
 
-  I was receiving errors as I tried to run the notebook so I asked Gemini to fix the errors. It added import statements that I checked and made sure worked. I also asked Gemini to include a F1 score indicator directly
-  in the code alongside the accuracy measure so that I could look at both metrics to measure the accuracy of the model.
-    
+### Label Distribution
+
+| Label | Count |
+|---|---|
+| Receiving_Advice | 87 |
+| Update | 49 |
+| Advice | 36 |
+| Recommendations | 28 |
+| **Total** | **200** |
+
+---
+
+## Difficult-to-Label Examples
+
+| Post Title | Assigned Label | Notes |
+|---|---|---|
+| *"I broke the 100m free WR??!"* | Update | Satirical post sharing an image of a time; intent is sharing a data artifact, not asking for help. Flagged as potentially satirical. |
+| *"4 months into swimming: is 2:43/100m decent?"* | Update | Shares personal performance data (smartwatch image); asking "is this good?" is secondary to the data share. Compare with posts like *"I haven't swam in 8 years..."* which are purely seeking technique help. |
+| *"Swam my first kilometer yesterday!"* | Advice | Primarily a milestone share with embedded questions at the end, but the post's purpose is sharing experience. |
+
+---
+
+## Fine-Tuning Approach
+
+- **Base Model:** `distilbert-base-uncased`
+- **Training Split:** 70% of 200 examples used for training
+- **Metrics Reported:** Precision, Recall, Accuracy, F1 Score
+- **Hyperparameter Decisions:** Epochs increased from 3 → 5; learning rate decreased from `2e-5` → `1e-5` to allow the model to learn more gradually and stably.
+
+---
+
+## Evaluation Report
+
+### Overall Accuracy
+
+| Model | Accuracy |
+|---|---|
+| Baseline | 0.667 |
+| Fine-Tuned | 0.433 |
+
+### Per-Class Metrics — Baseline Model
+
+| Class | Precision | Recall | F1-Score | Support |
+|---|---|---|---|---|
+| Advice | 0.50 | 0.33 | 0.40 | 6 |
+| Receiving_Advice | 0.62 | 1.00 | 0.76 | 13 |
+| Recommendations | 1.00 | 0.50 | 0.67 | 4 |
+| Update | 1.00 | 0.43 | 0.60 | 7 |
+| **Accuracy** | | | **0.67** | **30** |
+| Macro Avg | 0.78 | 0.57 | 0.61 | 30 |
+| Weighted Avg | 0.73 | 0.67 | 0.64 | 30 |
+
+### Per-Class Metrics — Fine-Tuned Model
+
+| Class | Precision | Recall | F1-Score | Support |
+|---|---|---|---|---|
+| Advice | 0.00 | 0.00 | 0.00 | 6 |
+| Receiving_Advice | 0.43 | 1.00 | 0.60 | 13 |
+| Recommendations | 0.00 | 0.00 | 0.00 | 4 |
+| Update | 0.00 | 0.00 | 0.00 | 7 |
+| **Accuracy** | | | **0.43** | **30** |
+| Macro Avg | 0.11 | 0.25 | 0.15 | 30 |
+| Weighted Avg | 0.19 | 0.43 | 0.26 | 30 |
+
+### Confusion Matrix — Fine-Tuned Model
+
+| | Advice | Receiving_Advice | Recommendations | Update |
+|---|---|---|---|---|
+| **Advice** | 0 | 6 | 0 | 0 |
+| **Receiving_Advice** | 0 | 13 | 0 | 0 |
+| **Recommendations** | 0 | 4 | 0 | 0 |
+| **Update** | 0 | 7 | 0 | 0 |
+
+---
+
+## Wrong Predictions (17 / 30)
+
+### Example 1
+| Field | Value |
+|---|---|
+| **Text** | *"Quick intro so you know why I'm writing this: I'm José. I swam distance freestyle for Portugal for about ten years, the 800 and 1500, with a stop at the Tokyo 2020 Olympics. Somewhere along the way..."* |
+| **True Label** | Advice |
+| **Predicted** | Receiving_Advice (confidence: 0.29) |
+| **Reasoning** | The post starts with a first-person narrative, which the model likely interpreted as Receiving_Advice. Because Receiving_Advice had the most examples (87), the model learned to treat it as a "catch-all" label. |
+
+### Example 2
+| Field | Value |
+|---|---|
+| **Text** | *"Curious what's worked for people here because my shoulders are starting to feel permanently annoyed. Started swimming consistently again and forgot how quickly upper back/shoulder tightness sneaks up..."* |
+| **True Label** | Recommendations |
+| **Predicted** | Receiving_Advice (confidence: 0.29) |
+| **Reasoning** | The distinction between Recommendations (non-technique advice) and Receiving_Advice (technique advice) was not learned, likely due to limited examples in the Recommendations class. |
+
+### Example 3
+| Field | Value |
+|---|---|
+| **Text** | *"I'm in month 3 of swimming and I'm addicted. I've tried two different methods while practicing front crawl. Method A: Continuing to breathe out all the way got me gasping for air in only 10–15 meters..."* |
+| **True Label** | Advice |
+| **Predicted** | Receiving_Advice (confidence: 0.32) |
+| **Reasoning** | The model learned Receiving_Advice as a catch-all and defaults to it. More balanced examples and full-prompt reading would address this. |
+
+---
+
+## Sample Classifications
+
+| # | Text (truncated) | True Label | Predicted | Confidence | Notes |
+|---|---|---|---|---|---|
+| 1 | *"I have been playing around with this, sometimes I look down at the bottom and sometimes I look ahead..."* | Receiving_Advice | Receiving_Advice ✅ | 0.30 | Reasonable — asks for suggestions about head/eye movement (technique). |
+| 2 | *"Hii! I'm a swimmer from a small club and we did a long distance gala. We did as many lengths of a 25m pool as we could for an hour..."* | Receiving_Advice | Receiving_Advice ✅ | 0.31 | Reasonable — asks about time standards and overall swimming ability. |
+| 3 | *"So it's coming into winter here in Australia and my local pool is outdoors. I currently swim 2x a week long swims..."* | Update | Receiving_Advice ❌ | 0.31 | Misclassified due to model's catch-all behavior. |
+| 4 | *"I've been swimming regularly for about 8 months. My main issue is endurance. After 50 meters of freestyle, I usually need to stop..."* | Advice | Receiving_Advice ❌ | 0.31 | Misclassified; post is sharing advice from experience. |
+| 5 | *"I saw this post last month about someone who started swimming at 33 and it changed their life for the better..."* | Update | Receiving_Advice ❌ | 0.30 | Misclassified; post is sharing an update/news item. |
+
+---
+
+## Reflection
+
+The model severely overfit to the `Receiving_Advice` label, classifying every post into this category. The intended behavior was to distinguish between all four labels, but the class imbalance (87 Receiving_Advice vs. 28 Recommendations) caused the model to treat `Receiving_Advice` as a catch-all. To fix this, the dataset would need more balanced class representation, particularly more examples for `Advice` and `Recommendations`.
+
+---
+
+## Spec Reflection
+
+The spec helped track each step of the process and clarify what each section of the notebook would be used for. The planning section at the beginning enabled useful brainstorming and helped identify a community that fit the project's scope.
+
+One divergence from the spec: the number of epochs was increased (3 → 5) and the learning rate was decreased (`2e-5` → `1e-5`) after the initial run produced very low accuracy. These changes did improve results, though the overall fine-tuned model still underperformed the baseline.
+
+---
+
+## AI Usage
+
+- **Labelling:** Claude was used to assist in labelling approximately half of the examples, following the label definitions and edge-case guidelines provided.
+- **Error Analysis:** Claude was asked to explain why the model consistently predicted `Receiving_Advice`. It identified the likely cause as a small and imbalanced dataset rather than a labelling problem.
+- **Debugging:** Gemini was used to fix runtime errors in the notebook. It added import statements (which were reviewed and verified). Gemini also added an F1 score metric directly in the code alongside the existing accuracy measure.
